@@ -3,6 +3,18 @@
 
 function computerPlay(){
     let randomNum = Math.floor(Math.random()*3);
-    console.log(randomNum);
-}
+    console.log("computer plays: " + randomNum);
 
+    // now we will be adding an if scenario that will return either ‘Rock’, ‘Paper’ or ‘Scissors’. 
+        if (randomNum === 0){
+            console.log("rock");
+            }
+
+            else if (randomNum === 1){
+                console.log("paper");
+            }
+            
+            else {
+                console.log("scissor");
+            }
+        }
