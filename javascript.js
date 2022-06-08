@@ -16,23 +16,48 @@ function computerPlay(){
             }
         }
 
-const playerSelection = prompt("what do you choose?", "".toLowerCase());
-  const computerSelection = computerPlay();
-        
+// now we will create a player input function. 
+
+function player(){
+    let playerSelection = prompt("Rock, Paper, or Scissors?", "")
+    let selectVal = playerSelection.toLowerCase();
+    return selectVal
+}
+
 // Now we will create a function that plays a single round of Rock Paper Scissors. 
 // The function should take two parameters - the playerSelection and computerSelection
 // and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
 
   
-function playRound(playerSelection, computerSelection) {
+function playRound(){
     // your code here!
+
+    // we start off by giving the parameters for who is playing. 
+    let playerSelection = player();
+    let computerSelection = computerPlay();
+        console.log('Player Chose: ' + playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1));
+        console.log('Computer Chose: '+ computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1));
+
+
+
+    // we start of by affing a tie scenario, where if play and computer choose the same object the console will log a tie. 
     if (playerSelection === computerSelection){
-        console.log("It's a tie, Bummer!");
+        return ("It's a tie, Bummer!");
+    // now we will create another scenario where the computer is the winner, and this will return the winner of the round like so: "You Lose! Paper beats Rock"
     } else if (playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissor" || playerSelection === "scissor" && computerSelection === "rock"){
-        console.log("You LOSE! " + computerSelection + "beats " + playerSelection);
-    } else (console.log(" You win!"))
+        return ("You LOSE! " + computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1) + " beats " + playerSelection.charAt(0).toUpperCase()+ playerSelection.slice(1) + "!");
+    // finally we are adding a scenario where the player wins. 
+    } else return (" You win!")
   }
+  // from here we are goign to create a "game" where best 3 of 5 wins. 
+
+  function game(){
+      for (let i = 1; i<6; i++){
+          console.log(playRound());
+          console.log('round: ' + i);
+      }
+  }
+
+  console.log(game());
+
   
-  const playerSelection = "rock";
-  const computerSelection = computerPlay();
-  console.log(playRound(playerSelection, computerSelection));
