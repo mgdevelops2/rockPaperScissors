@@ -24,22 +24,14 @@ function player(){
     return selectVal
 }
 
-// Now we will create a function that plays a single round of Rock Paper Scissors. 
-// The function should take two parameters - the playerSelection and computerSelection
-// and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
-
-  
+// Now we will create a function round() - taking 2 parameters and returning a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
 function playRound(){
-    // your code here!
-
     // we start off by giving the parameters for who is playing. 
     let playerSelection = player();
     let computerSelection = computerPlay();
         console.log('Player Chose: ' + playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1));
         console.log('Computer Chose: '+ computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1));
-
-
-
+        
     // we start of by affing a tie scenario, where if play and computer choose the same object the console will log a tie. 
     if (playerSelection === computerSelection){
         return ("It's a tie, Bummer!");
