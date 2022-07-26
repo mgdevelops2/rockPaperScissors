@@ -6,6 +6,7 @@ let playerScore = 0;
 let pScore = document.getElementById('pScore');
 let roundN = document.getElementById('roundN');
 let cScore = document.getElementById('cScore');
+let whoWon = document.getElementById('whoWon');
 
 for (num of buttons) {    // loop for each button that gives it an event listener
     num.addEventListener('click', function () {
@@ -26,7 +27,7 @@ function computerPlay() {
     } else if (randomNum === 1) {
         return "paper";
     } else {
-        return "scissor";
+        return "scissors";
     }
 }
 
@@ -45,16 +46,16 @@ function playRound(selectVal) {
 
     function outcome() {
         if (playerSelection === computerSelection) {  // if scenario -  per card
-            console.log("%c- Bummer the round is a TIE!", 'color: yellow; font-size: 10px');
+            // console.log("%c- Bummer the round is a TIE!", 'color: yellow; font-size: 10px');
             return "warning";
             // now we will create another scenario where the computer is the winner, and this will return the winner of the round like so: "You Lose! Paper beats Rock"
-        } else if (playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissor" || playerSelection === "scissor" && computerSelection === "rock") {
+        } else if ((playerSelection === "rock" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "scissors") || (playerSelection === "scissor" && computerSelection === "rock")) {
             computerScore++;
-            console.log("%c- You LOSE this round! " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) + " beats " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) + "!", 'color: red; font-size: 10px');
+            // console.log("%c- You LOSE this round! " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) + " beats " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) + "!", 'color: red; font-size: 10px');
             return "danger" ;
         } else {     // finally we are adding a scenario where the player wins. 
             playerScore++;
-            console.log("%c- You WIN this round", 'color: green; font-size: 10px');
+            // console.log("%c- You WIN this round", 'color: green; font-size: 10px');
             return "success";
         };
     }
@@ -62,16 +63,22 @@ function playRound(selectVal) {
     if (computerScore == 3 || playerScore == 3) {
         if (playerScore > computerScore) {
             console.log('%cYou WON the game!', 'color: green; background: gray; font-size: 18px');
+            appendWinner();
         } else if (playerScore < computerScore) {
             console.log('%cYou LOST the game!', 'color: red; background: gray; font-size: 18px');
+            appendLoss();
+
         }
     } else if (roundNum == 5) {
         if (playerScore > computerScore) {
             console.log('%cYou WON the game!', 'color: green; background: gray; font-size: 18px');
+            appendWinner();
         } else if (playerScore < computerScore) {
             console.log('%cYou LOST the game!', 'color: red; background: gray; font-size: 18px');
+            appendLoss();
         } else if (playerScore == computerScore) {
             console.log('%cYou tied give it another go!', 'color: yellow; font-size: 18px');
+            appendTie();
         }
     };
     pScore.textContent = 'User Score: ' + playerScore;
@@ -92,4 +99,32 @@ function appendCard(a, b, c, d) {
     z.setAttribute('style', 'width: 10rem'); // set styleAttr
     z.innerHTML = a1; // add card into html
     rounds.appendChild(z); // append new card. 
+};
+
+
+function appendWinner() {
+    a = `<h1 class="text-success">Hey you WON!</h1>`
+
+    var winCard = document.createElement('div'); // create cardDiv
+    winCard.classList.add('card', 'shadow', 'cursor-pointer', 'text-center', 'mt-5') // classList.add
+    winCard.innerHTML = a; // add card into html
+    whoWon.appendChild(winCard); // append new card. 
+};
+
+function appendLoss() {
+    a = `<h1 class="text-danger">You LOST bumber!</h1>`
+
+    var winCard = document.createElement('div'); // create cardDiv
+    winCard.classList.add('card', 'shadow', 'cursor-pointer', 'text-center', 'mt-5') // classList.add
+    winCard.innerHTML = a; // add card into html
+    whoWon.appendChild(winCard); // append new card. 
+};
+
+function appendTie() {
+    a = `<h1 class="text-secondary">Lame it's a TIE!</h1>`
+
+    var winCard = document.createElement('div'); // create cardDiv
+    winCard.classList.add('card', 'shadow', 'cursor-pointer', 'text-center', 'mt-5') // classList.add
+    winCard.innerHTML = a; // add card into html
+    whoWon.appendChild(winCard); // append new card. 
 };
